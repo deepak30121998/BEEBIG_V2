@@ -4,6 +4,7 @@ namespace Database\Seeders;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Models\User;
+use Illuminate\Support\Str;
 
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -27,6 +28,8 @@ class DatabaseSeeder extends Seeder
         $super_admin = User::create([
             'name' => 'Super Admin',
             'email' => 'deepakchoudhary3012@gmail.com',
+            'email_verified_at' => now(),
+            'remember_token' => Str::random(10),
             'password' => bcrypt('s170022200245')
         ]);
 

@@ -6,6 +6,7 @@ use App\Models\Home;
 use App\Http\Requests\StoreHomeRequest;
 use App\Http\Requests\UpdateHomeRequest;
 use Artesaos\SEOTools\Facades\SEOTools;
+use App\Models\Post;
 
 class HomeController extends Controller
 {

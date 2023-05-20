@@ -11,9 +11,31 @@ class NewsletterSubscriptionController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function addSubscriber(Request $request)
+    {
+        echo "1";die;
+        if($request->ajax())
+        {
+            $data = $request->all();
+
+            $subscribercount = NewsletterSubscription::where('email',$data['subscriber_email'])->count();
+            if($subscribercount > 0)
+            {
+                return "exists";
+            }else{
+                 $newsletter = new NewsletterSubscription;
+                 $newsletter->email = $data['subscriber_email'];
+                 $newsletter->status = 1;
+                 $newsletter->save();
+                 return "Inserted";
+            }
+        }
+    }
+
     public function index()
     {
-        //
+        $subscriber = NewsletterSubscription::orderBy('id','desc')->get();
+        return view('Newsletter.index', ['subscriber' => $subscriber]);
     }
 
     /**

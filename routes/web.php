@@ -2,7 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
-    HomeController
+    HomeController,
+    AboutController,
+    BlogsController,
+    ContactController,
+    PagesController,
+    NewsletterSubscriptionController
 };
 
 /*
@@ -19,6 +24,16 @@ use App\Http\Controllers\{
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/about-us', [AboutController::class, 'index'])->name('about.us');
+Route::get('/blogs', [BlogsController::class, 'index'])->name('front.blogs.show');
+Route::get('/contact-us', [ContactController::class, 'index'])->name('front.contact');
+Route::get('/blogs/{slug}', [BlogsController::class, 'show'])->name('front.blogs.detail');
+Route::post('/contact-us/store', [ContactController::class, 'store'])->name('contact.store');
+Route::get('/page/{slug}', [PagesController::class, 'detail']);
+
+// Route For Newsletter
+Route::post('/add-subscriber-email', [NewsletterSubscriptionController::class, 'addSubscriber']);
+
 
 Route::middleware([
     'auth:sanctum',
