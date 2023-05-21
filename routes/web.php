@@ -6,8 +6,14 @@ use App\Http\Controllers\{
     AboutController,
     BlogsController,
     ContactController,
-    PagesController,
     NewsletterSubscriptionController
+};
+
+use App\Http\Controllers\Admin\{
+    ProfileController,
+    PagesController,
+    MailSettingController,
+    DashboardController,
 };
 
 /*
@@ -35,14 +41,8 @@ Route::get('/page/{slug}', [PagesController::class, 'detail']);
 Route::post('/add-subscriber-email', [NewsletterSubscriptionController::class, 'addSubscriber']);
 
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])->group(function () {
+    Route::get('/dashboard', [HomeController::class, 'redirectUser'])->name('dashboard');
 });
 
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified','role:super-admin'])->group(function () {
@@ -50,5 +50,18 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified','r
     Route::get('/admin/dashboard', function () {
         return view('dashboard');
     })->name('admin.dashboard');
+
+});
+
+Route::namespace('App\Http\Controllers\Admin')->name('admin.')->prefix('admin')
+    ->group(function(){
+        Route::get('/profile',[ProfileController::class,'index'])->name('profile');
+        Route::put('/profile-update',[ProfileController::class,'update'])->name('profile.update');
+        Route::resource('roles','RoleController');
+        Route::resource('permissions','PermissionController');
+        Route::resource('posts','PostController');
+        Route::resource('pages', 'PagesController');
+        Route::get('/leads', [App\Http\Controllers\ContactController::class, 'show'])->name('leads.index');
+        Route::get('/newsletter-subscriber', [NewsletterSubscriptionController::class, 'index'])->name('newsletter.subscriber.index');
 
 });

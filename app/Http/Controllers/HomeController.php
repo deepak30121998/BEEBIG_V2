@@ -7,6 +7,7 @@ use App\Http\Requests\StoreHomeRequest;
 use App\Http\Requests\UpdateHomeRequest;
 use Artesaos\SEOTools\Facades\SEOTools;
 use App\Models\Post;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -68,5 +69,15 @@ class HomeController extends Controller
     public function destroy(Home $home)
     {
         //
+    }
+
+    public function redirectUser()
+    {
+        if(auth()->user()->hasRole('super-admin'))
+        {
+            return view('Admin.dashboard');
+        }else{
+            dd("2");
+        }
     }
 }
