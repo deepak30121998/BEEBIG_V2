@@ -56,23 +56,12 @@ class ContactController extends Controller
                 },
             ],
 
-            'g-recaptcha-response' => ['required', function (string $attribute, mixed $value, Closure $fail) {
-                $google_response = Http::asForm()->post("https://www.google.com/recaptcha/api/siteverify", [
-                    'secret' => config('services.recaptcha.secret_key'),
-                    'response' => $value,
-                    'remoteip' => \request()->ip()
-                ]);
 
-                if (!$google_response->json('success')) {
-                    $fail("The {$attribute} is invalid.");
-                }
-            },]
         ]);
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator);
         }
-dd($request);
         $contact = Contact::create($request->validated());
 
         Alert::success('Thanks', 'Your Message Sent Successfully');
@@ -88,7 +77,7 @@ dd($request);
     public function show(Contact $contact)
     {
         $contact = Contact::orderBy('id', 'desc')->get();
-        return view('Leads.index', ['contacts' => $contact]);
+        return view('Admin.Leads.index', ['contacts' => $contact]);
     }
 
     /**

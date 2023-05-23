@@ -7,11 +7,12 @@
         </p><a class="text-green-900" href="#">Term & Conditions</a>
 
 
-        <form class="mt-[30px]">
+        <form class="mt-[30px]" id="subscribe-form">
             @csrf
           <div class="bg-white flex items-center justify-between p-3 rounded-[55px]">
             <input class="ml-[25px]" type="email" name="subscriber_email" id="subscriber_email" placeholder="Enter your mail ..." pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
-            <button class="rounded-full bg-green-900 grid place-items-center w-[56px] h-[56px]" type="submit" onclick="addSubscriber();"> <img class="filter-white" src="assets/images/icons/icon-right.svg" alt=""></button>
+            <button class="rounded-full bg-green-900 grid place-items-center w-[56px] h-[56px]" type="submit" onclick="addSubscriber();"> <img class="filter-white" src="{{url('assets/images/icons/icon-right.svg')}}" alt=""></button>
+            <span id="email-error" style="color: red;"></span>
           </div>
         </form>
 

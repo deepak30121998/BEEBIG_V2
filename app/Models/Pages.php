@@ -11,11 +11,21 @@ class Pages extends Model
 
     protected $guarded = [];
 
-    protected $fillable = ['title','short_title', 'page_description','user_id','publish', 'meta_description', 'meta_title', 'slug'];
-
+    protected $fillable = [
+        'title',
+        'short_title',
+        'page_description',
+        'user_id',
+        'publish',
+        'meta_description',
+        'meta_title',
+        'slug'
+    ];
 
     public function user()
     {
-       return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
+
+
 }

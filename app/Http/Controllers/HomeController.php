@@ -77,7 +77,7 @@ class HomeController extends Controller
         {
             return view('Admin.dashboard');
         }else{
-            dd("2");
+            return redirect()->route('home');
         }
     }
 }

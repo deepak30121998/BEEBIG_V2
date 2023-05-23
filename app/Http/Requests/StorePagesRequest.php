@@ -11,7 +11,7 @@ class StorePagesRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,13 @@ class StorePagesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => ['required', 'unique:pages,title'],
+            'short_title' => ['required'],
+            'page_description' => ['required'],
+            'slug' => ['required', 'unique:pages,slug'],
+            'meta_title' => ['required', 'max:255'],
+            'meta_description' => ['required', 'max:500'],
+            'publish' => ['required']
         ];
     }
 }

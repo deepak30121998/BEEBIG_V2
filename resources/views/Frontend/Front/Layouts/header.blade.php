@@ -81,9 +81,20 @@
 
         <nav class="fixed top-0 right-0 bg-white flex flex-col h-screen nav-shadow overflow-y-scroll nav-mobile opacity-0 pointer-events-none transition-all duration-200 z-[100]" style="width: 330px;">
 
-            <div class="flex items-center border-b p-[15px] lg:p-[26px] gap-[10px] border-[#F2F4F7]"><img class="max-w-[50px]" src="{{ url('assets/images007/logo.png') }}" alt="avatar">
+            <div class="flex items-center border-b p-[15px] lg:p-[26px] gap-[10px] border-[#F2F4F7]">
+                @auth
+                    <img class="max-w-[50px]" src="{{ Avatar::create(Auth::user()->name)->toBase64() }}" alt="avatar">
+                @else
+                    <img class="max-w-[50px]" src="{{ url('assets/images007/logo.png') }}" alt="avatar">
+                @endauth
+
+
               <div>
-                <p class="font-bold">Beebig Digital</p>
+                @auth
+                    <p class="font-bold">{{ Auth::user()->name }}</p>
+                @else
+                    <p class="font-bold">Beebig Digital</p>
+                @endauth
               </div>
             </div>
 
@@ -95,22 +106,55 @@
                     <li class="py-[13px]"><a class="transition-all duration-200 hover:text-green-900 hover:translate-x-[2px]" href="{{ route('about.us') }}">About Us</a></li>
                     <li class="py-[13px]"><a class="transition-all duration-200 hover:text-green-900 hover:translate-x-[2px]" href="{{ route('front.blogs.show') }}">Blogs</a></li>
                     <li class="py-[13px]"><a class="transition-all duration-200 hover:text-green-900 hover:translate-x-[2px]" href="{{ route('front.contact') }}">Contact Us</a></li>
-                    <li class="py-[13px]"><a class="transition-all duration-200 hover:text-green-900 hover:translate-x-[2px]" href="{{url('page/website-development')}}">Web Devlopment</a></li>
-                    <li class="py-[13px]"><a class="transition-all duration-200 hover:text-green-900 hover:translate-x-[2px]" href="{{url('page/google-ads')}}">Google Ads</a></li>
-                    <li class="py-[13px]"><a class="transition-all duration-200 hover:text-green-900 hover:translate-x-[2px]" href="{{url('page/search-engine-optimization')}}">Search Engine Optimization</a></li>
-                    <li class="py-[13px]"><a class="transition-all duration-200 hover:text-green-900 hover:translate-x-[2px]" href="{{url('page/facebook-advertisement')}}">Facebook Advertising Campaigns</a></li>
-                    <li class="py-[13px]"><a class="transition-all duration-200 hover:text-green-900 hover:translate-x-[2px]" href="{{url('page/social-media-optimization')}}">Social Media Marketing</a></li>
-                    <li class="py-[13px]"><a class="transition-all duration-200 hover:text-green-900 hover:translate-x-[2px]" href="{{url('page/email-marketing	')}}">Email Marketing</a></li>
-                    <li class="py-[13px]"><a class="transition-all duration-200 hover:text-green-900 hover:translate-x-[2px]" href="{{url('page/video-marketing')}}">Video Marketing</a></li>
-                    <li class="py-[13px]"><a class="transition-all duration-200 hover:text-green-900 hover:translate-x-[2px]" href="{{url('page/logo-designing')}}">Logo Designing</a></li>
-                    <li class="py-[13px]"><a class="transition-all duration-200 hover:text-green-900 hover:translate-x-[2px]" href="#">Stationary</a></li>
-                    <li class="py-[13px]"><a class="transition-all duration-200 hover:text-green-900 hover:translate-x-[2px]" href="{{url('page/brochure-and-catalogue-designing	')}}">Brochure / Catalogue</a></li>
-                    <li class="py-[13px]"><a class="transition-all duration-200 hover:text-green-900 hover:translate-x-[2px]" href="{{url('page/posters-and-magazines	')}}">Posters & Magzines</a></li>
-                    <li class="py-[13px]"><a class="transition-all duration-200 hover:text-green-900 hover:translate-x-[2px]" href="#">Calander Designing</a></li>
+                    <li class="group menu-mobile-item py-[13px]" style="width: 100%;height: 100%;z-index: 999999999;border: 0;">
+                        <div class="flex items-center justify-between transition-all duration-200 hover:text-green-900 hover:translate-x-[2px]">
+                          <p>Services</p><img class="w-[18px] h-[18px]" src="{{url('assets/images/icons/icon-angle-down-fill.svg')}}" alt="angle icon">
+                        </div>
+                        <ul class="pl-5 menu-child hidden pt-[10px]">
+                          <li class="text-md py-[10px]" id="sv1"><a class="block transition-all duration-200 hover:text-green-900 hover:translate-x-1" href="{{url('page/website-development')}}">Web Devlopment</a></li>
+                          <li class="text-md py-[10px]" id="sv1"><a class="block transition-all duration-200 hover:text-green-900 hover:translate-x-1" href="{{url('page/google-ads')}}">Google Ads</a></li>
+                          <li class="text-md py-[10px]" id="sv1"><a class="block transition-all duration-200 hover:text-green-900 hover:translate-x-1" href="{{url('page/search-engine-optimization')}}">Search Engine Optimization</a></li>
+                          <li class="text-md py-[10px]" id="sv1"><a class="block transition-all duration-200 hover:text-green-900 hover:translate-x-1" href="{{url('page/facebook-advertisement')}}">Facebook Advertising Campaigns</a></li>
+                          <li class="text-md py-[10px]" id="sv1"><a class="block transition-all duration-200 hover:text-green-900 hover:translate-x-1" href="{{url('page/social-media-optimization')}}">Social Media Marketing</a></li>
+                          <li class="text-md py-[10px]" id="sv1"><a class="block transition-all duration-200 hover:text-green-900 hover:translate-x-1" href="{{url('page/email-marketing')}}">Email Marketing</a></li>
+                          <li class="text-md py-[10px]" id="sv1"><a class="block transition-all duration-200 hover:text-green-900 hover:translate-x-1" href="{{url('page/video-marketing')}}">Video Marketing</a></li>
+                          <li class="text-md py-[10px]" id="sv1"><a class="block transition-all duration-200 hover:text-green-900 hover:translate-x-1" href="{{url('page/logo-designing')}}">Logo Designing</a></li>
+                          <li class="text-md py-[10px]" id="sv1"><a class="block transition-all duration-200 hover:text-green-900 hover:translate-x-1" href="{{url('page/brochure-and-catalogue-designing')}}">Brochure / Catalogue</a></li>
+                          <li class="text-md py-[10px]" id="sv1"><a class="block transition-all duration-200 hover:text-green-900 hover:translate-x-1" href="{{url('page/posters-and-magazines	')}}">Posters & Magzines</a></li>
+                          <li class="text-md py-[10px]" id="sv1"><a class="block transition-all duration-200 hover:text-green-900 hover:translate-x-1" href="#">Calander Designing</a></li>
+                          <li class="text-md py-[10px]" id="sv1"><a class="block transition-all duration-200 hover:text-green-900 hover:translate-x-1" href="#">Stationary</a></li>
+                        </ul>
+                    </li>
                 </ul>
 
               {{-- Border Sepration --}}
-              <div class="mt-5 border-b border-gray-100 pb-5 mb-[25px] pt-[30px]"></div>
+                <div class="mt-5 border-b border-gray-100 pb-5 mb-[25px] pt-[30px]">
+
+                    @auth
+                        <p class="font-bold text-heading-6 mb-[10px]">Your Account</p>
+                        <ul class="text-[15px]">
+                            <li class="py-[13px]"><a class="transition-all duration-200 hover:text-green-900 hover:translate-x-[2px]" href="{{ route('profile.show') }}">Profile</a></li>
+
+                            @role('super-admin')
+                            <li class="py-[13px]"><a class="transition-all duration-200 hover:text-green-900 hover:translate-x-[2px]" href="{{ route('dashboard') }}">Admin Dashboard</a></li>
+                            @endrole
+
+                            <form method="POST" action="{{ route('logout') }}" x-data>
+                                @csrf
+
+                                <button type="submit">Sign Out</button>
+                            </form>
+
+                        </ul>
+                    @else
+                        <p class="font-bold text-heading-6 mb-[10px]">Your Account</p>
+                        <ul class="text-[15px]">
+                            <li class="py-[13px]"><a class="transition-all duration-200 hover:text-green-900 hover:translate-x-[2px]" href="{{ route('login') }}">Login</a></li>
+                            <li class="py-[13px]"><a class="transition-all duration-200 hover:text-green-900 hover:translate-x-[2px]" href="{{ route('register') }}">Sign Up</a></li>
+                        </ul>
+                    @endauth
+
+                </div>
               <div class="text-gray-400 font-chivo text-[13px]">Copyright 2023 © BeeBig Digital.</div>
             </div>
           </nav>

@@ -12,7 +12,7 @@
             </span>
         </a>
         <!-- Light Logo-->
-        <a href="index.html" class="logo logo-light">
+        <a href="{{route('home')}}" class="logo logo-light">
             <span class="logo-sm">
                 <img src="{{url('admin/assets/images007/Logo/transparent-logo.png')}}" alt="" height="22">
             </span>
@@ -35,7 +35,7 @@
 
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{ route('admin.dashboard') }}">
+                    <a class="nav-link menu-link" href="{{ route('dashboard') }}">
                         <i class="mdi mdi-speedometer"></i> <span data-key="t-layouts">Dashboard</span>
                     </a>
                 </li>

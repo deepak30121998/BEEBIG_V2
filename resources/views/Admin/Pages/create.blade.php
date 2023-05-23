@@ -1,5 +1,7 @@
 
-<x-app-layout>
+@extends('Admin.layouts.app')
+
+@section('content')
     <!-- Start right Content here -->
          <!-- ============================================================== -->
          <div class="main-content">
@@ -40,7 +42,7 @@
 
                                          <div class="form-check form-check-outline form-check-success mb-3">
                                             <label for="cleave-time" class="form-label">Description<sup style="color: red;">*</sup></label>
-                                            <textarea class="form-control" name="page_description" id="body" placeholder="Enter description" rows="5">{{ old('description') }}</textarea>
+                                            <textarea class="form-control" name="page_description" id="editor5" placeholder="Enter description" rows="5">{{ old('description') }}</textarea>
                                             @error('page_description')
                                              <div class="invalid-feedback" style="display: block !important;">
                                                 {{$message}}
@@ -125,12 +127,16 @@
              </div>
              <!-- End Page-content -->
 
+             <script src="https://cdn.ckeditor.com/4.21.0/standard-all/ckeditor.js"></script>
+             <script>
+                // We need to turn off the automatic editor creation first.
+                CKEDITOR.disableAutoInline = true;
 
+                CKEDITOR.replace('editor5', {
+                  extraPlugins: 'sourcedialog',
+                  removePlugins: 'sourcearea',
+                  removeButtons: 'PasteFromWord'
+                });
+              </script>
 
- </x-app-layout>
-
-
-
- <script>
-    CKEDITOR.replace( 'page_description' );
-</script>
+@endsection

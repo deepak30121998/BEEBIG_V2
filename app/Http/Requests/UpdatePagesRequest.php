@@ -22,7 +22,12 @@ class UpdatePagesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => ['required'],
+            'short_title' => ['required'],
+            'edit_description' => ['required'],
+            'slug' => ['required'],
+            'meta_title' => ['required', 'max:255'],
+            'meta_description' => ['required', 'max:500'],
         ];
     }
 }

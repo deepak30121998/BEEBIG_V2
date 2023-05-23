@@ -69,29 +69,36 @@
             <div class="md:flex md:items-center md:gap-6">
               <p class="text-lead font-bold">©BeeBig Digital 2023
               </p>
-              <div class="flex items-center justify-between md:gap-6"><a class="text-text" href="#">Privacy policy</a><a class="text-text" href="#">Cookies</a><a class="text-text" href="#">Terms of service</a></div>
+              <div class="flex items-center justify-between md:gap-6"><a class="text-text" href="{{url('page/privacy-policy')}}">Privacy policy</a><a class="text-text" href="#">Cookies</a><a class="text-text" href="{{url('page/terms-and-conditions')}}">Terms of service</a></div>
             </div>
             <div class="flex items-center justify-center gap-5 mt-5 lg:mt-0"><a class="w-8 h-8 transition-all duration-300 hover:opacity-70 hover:-translate-y-1" href="https://www.facebook.com/beebigdigital24x7" target="_blank"><img class="h-full w-full object-cover" src="{{url('assets/images/icons/icon-facebook-green.svg')}}" alt="facebook icon"></a><a class="w-8 h-8 transition-all duration-300 hover:opacity-70 hover:-translate-y-1" href="https://www.instagram.com/beebigdigital/" target="_blank"><img class="h-full w-full object-cover" src="{{url('assets/images/icons/icon-instagram-green.svg')}}" alt="instagram icon"></a><a class="w-8 h-8 transition-all duration-300 hover:opacity-70 hover:-translate-y-1" href="https://twitter.com/BeeBigDigital" target="_blank"><img class="h-full w-full object-cover" src="{{url('assets/images/icons/icon-twitter-green.svg')}}" alt="twitter icon"></a><a class="w-8 h-8 transition-all duration-300 hover:opacity-70 hover:-translate-y-1" href="https://www.linkedin.com/company/beebigdigital/" target="_blank"><img class="h-full w-full object-cover" src="{{url('assets/images/icons/icon-linkedin-green.svg')}}" alt="linkedin icon"></a></div>
           </div>
         </div>
       </footer>
     </div>
-    <script data-cfasync="false" src="../../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/javascript" src="{{url('assets/scripts/vendors/jquery-3.6.0.min.js')}}"></script>
+    <script data-cfasync="false" src="../../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script type="text/javascript" src="{{url('assets/scripts/vendors/jquery-3.6.0.min.js')}}"></script>
     <script type="text/javascript" src="{{url('assets/scripts/vendors/slick.min.js')}}"></script>
     <script src="{{url('assets/scripts/app.js')}}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
         function onClick(e) {
-          e.preventDefault();
-          grecaptcha.ready(function() {
-            grecaptcha.execute('{{ config("services.recaptcha.site_key") }}', {action: 'homepage'}).then(function(token) {
+            e.preventDefault();
+            grecaptcha.ready(() => {
+                grecaptcha.execute('{{ config("services.recaptcha.site_key") }}', { action: 'homepage' }).then((token) => {
                 document.getElementById('g-recaptcha-response').value = token;
                 document.getElementById('register-form').submit();
+                });
             });
-          });
-        }
+            }
 
-        function addSubscriber(){
+
+    </script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function addSubscriber(){
             var subscriber_email = $("#subscriber_email").val();
             var emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
             if(emailRegex.test(subscriber_email)==false)
@@ -119,7 +126,7 @@
                 });
             }
         }
-    </script>
+</script>
 
 
 

@@ -106,13 +106,14 @@
             </div>
         </div>
     </div>
-@endsection
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-<script>
-    $(document).ready(function () {
-    $('#example').DataTable({
-        "ordering": false
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <script>
+        $(document).ready(function () {
+        $('#example').DataTable({
+            "ordering": false
+        });
     });
-});
-</script>
+    </script>
+@endsection

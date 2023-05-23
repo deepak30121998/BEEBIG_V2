@@ -13,7 +13,6 @@ class NewsletterSubscriptionController extends Controller
      */
     public function addSubscriber(Request $request)
     {
-        echo "1";die;
         if($request->ajax())
         {
             $data = $request->all();
@@ -30,12 +29,13 @@ class NewsletterSubscriptionController extends Controller
                  return "Inserted";
             }
         }
+
     }
 
     public function index()
     {
         $subscriber = NewsletterSubscription::orderBy('id','desc')->get();
-        return view('Newsletter.index', ['subscriber' => $subscriber]);
+        return view('Admin.Newsletter.index', ['subscriber' => $subscriber]);
     }
 
     /**

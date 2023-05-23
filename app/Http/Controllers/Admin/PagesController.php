@@ -39,7 +39,7 @@ class PagesController extends Controller
      */
     public function store(StorePagesRequest $request)
     {
-        $data= $request->validated();
+        $data= $request->all();
         $data['user_id'] = Auth::user()->id;
         $pages = Pages::create($data);
 
